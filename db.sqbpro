@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/pbent/Downloads/sql-population-queries-part-ii-starting/sql-population-queries-part-ii-starting/db.sqlite" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1053"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,9:maincountries"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT count() FROM countries
+WHERE continent = 'Africa';
+SELECT * FROM population_years;
+SELECT * FROM countries;
+SELECT continent, round (sum (population_years.population),2) AS 'Total Population' FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE continent = 'Oceania' AND year = '2005';
+
+SELECT continent, round (avg(population),2) AS 'AVERAGE POPULATION' FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE continent = 'South America' AND year = '2003';
+
+SELECT min(population), countries.name, countries.continent
+FROM countries
+JOIN population_years	
+ON countries.id = population_years.country_id
+WHERE year= '2007';
+
+SELECT round (avg(population),2) AS 'Average Population',name AS 'Name' FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE name = 'Poland';
+
+SELECT count(*) FROM countries
+JOIN population_years
+ON countries.id = population_years.country_id
+WHERE name like '%The%';
+
+SELECT round (sum(population),2) AS 'Total_Population', continent AS 'Continent' FROM countries
+JOIN population_years
+ON	countries.id = population_years.country_id
+WHERE year = '2010'
+GROUP BY continent
+ORDER BY 1 DESC;</sql><current_tab id="0"/></tab_sql></sqlb_project>
